@@ -25,7 +25,6 @@ var interval = setInterval(function(){
 		ctx.stroke();
 		ctx.fillText(portion(ang).toFixed(2), 195, 60);
 		ang++;
-		console.log(ang);
 	} else {
 		clearInterval(interval);
 	}
