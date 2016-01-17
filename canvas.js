@@ -13,40 +13,25 @@ var portion = function(dgr){
 	return dgr/360*100;
 }
 
-/*var interval = setInterval(function(){
-	if(i <= 100){
-		ctx.fillRect(10, 10, 100, i);
-		i += 5;
-	} else if(ang <= 360){		
-		ctx.clearRect(120, 0, 200, 200);
-		ctx.beginPath();
-		ctx.arc(200, 60, 50, 0, dgr2rad(ang));
-		ctx.stroke();
-		ctx.fillText(portion(ang).toFixed(2), 195, 60);
-		ang++;
-	} else {
-		clearInterval(interval);
-	}
-	}, 20);*/
-
 var drawPercentage = function(prct, width = 20, ival = 0){
 	ctx.lineWidth = width;
-	var ang = 1;
-	//console.log("Prct: ", prct, " Wdth: ", width, "Ang: ", ang);
+	var ang = -90;
+	var step = ((360*prct)/180); //nadjemo deo kruga koji treba da se iscrta i izdelimo ga na 180 delova
 
 	var interval = setInterval(function(){
-		//console.log("Prct: ", prct, " Wdth: ", width, "Ang: ", ang);
-		if(ang <= 360*prct){
+		if((ang + 90) <= 360*prct){
 			ctx.clearRect(120, 0, 200, 200);
 			ctx.beginPath();
-			ctx.arc(200, 60, 50, 0, dgr2rad(ang));
+			ctx.arc(200, 60, 50, -Math.PI/2, dgr2rad(ang));
 			ctx.stroke();
-			ctx.fillText(portion(ang).toFixed(2), 195, 60);
-			ang++;
+			ctx.closePath();
+			ctx.fillText(portion(ang + 90).toFixed(2), 195, 60); //korekcija za stampu
+			ang += step;
+			console.log(ang);
 		} else {
 			clearInterval(interval);
 		}
 	}, ival);
 }
 
-drawPercentage(1, 20);
+drawPercentage(0.44, 20, 1);
