@@ -13,7 +13,7 @@ var portion = function(dgr){
 	return dgr/360*100;
 }
 
-var drawPercentage = function(prct, width = 20, ival = 0){
+var drawPercentage = function(prct, width, ival){
 	ctx.lineWidth = width;
 	var ang = -90;
 	var step = ((360*prct)/180); //nadjemo deo kruga koji treba da se iscrta i izdelimo ga na 180 delova
